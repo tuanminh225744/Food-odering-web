@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 let refreshTokens = [];
 
+
 const authController = {
     // Đăng ký người dùng mới
     register: async (req, res) => {
