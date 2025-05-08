@@ -1,11 +1,11 @@
 import React from 'react';
 import './checkEmail.css';
 
-function CheckEmail() {
+function CheckEmail({ setFormType }) {
     return (
         <>
             {/* Check Email Notification Form */}
-            <div className="auth-form check-email-notification-form hidden">
+            <div className="auth-form check-email-notification-form">
                 <div className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Kiểm tra email</h3>
@@ -19,7 +19,7 @@ function CheckEmail() {
                     </div>
 
                     <div className="auth-form__controls">
-                        <button className="btn btn-primary back-to-login-form">ĐĂNG NHẬP</button>
+                        <button onClick={() => setFormType('login')} className="btn btn-primary back-to-login-form">ĐĂNG NHẬP</button>
                     </div>
                 </div>
             </div>

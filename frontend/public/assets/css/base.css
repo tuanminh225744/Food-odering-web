@@ -401,4 +401,8 @@ html {
 
 .auth-form__forgot {
     color: var(--primary-color);
+    border: none;
+    background-color: var(--white-color);
+    font-size: 1.6rem;
+    font-weight: 500;
 }

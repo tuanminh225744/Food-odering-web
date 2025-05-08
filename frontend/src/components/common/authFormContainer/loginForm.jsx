@@ -32,9 +32,9 @@ const LoginForm = ({ setFormType }) => {
 
                     <div className="auth-form-aside">
                         <div className="auth-form__help">
-                            <a href="#" className="auth-form__help-link auth-form__forgot">
+                            <button onClick={() => setFormType('forgotPassword')} className="auth-form__help-link auth-form__forgot">
                                 Quên mật khẩu
-                            </a>
+                            </button>
                         </div>
                     </div>
 

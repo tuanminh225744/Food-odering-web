@@ -71,9 +71,7 @@ const Navbar = () => {
                             Trợ giúp
                         </a>
                     </li>
-                    <li className="navbar-item navbar-item--bold navbar-item--separate" id="navbar__register-btn">Đăng kí</li>
-                    <li className="navbar-item navbar-item--bold navbar-item--separate" id="navbar__login-btn">Đăng nhập</li>
-                    <li className="navbar-item navbar-user hidden">
+                    <li className="navbar-item navbar-user">
                         <img src="/assets/img/anh_user/user.jpg" alt="" className="navbar-user-img" />
                         <span className="navbar-user-name">Shiina Mahiru</span>
                         <ul className="navbar-user-menu">

@@ -59,13 +59,3 @@
     text-decoration: none;
     color: transparent;
 }
-
-.error-message {
-    display: block;
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin-top: 8px;
-    font-weight: 400;
-    justify-content: left;
-    width: 100%;
-}

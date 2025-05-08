@@ -1,0 +1,117 @@
+.order-card {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+.order-card__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.order-card__shop-name {
+    color: var(--black-color);
+    font-size: 1.4rem;
+}
+
+
+.order-card__status {
+    font-size: 1.4rem;
+    margin-left: auto;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.order-card__body {
+    display: flex;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.order-card__image {
+    width: 80px;
+    margin-right: 16px;
+}
+
+.order-card__details {
+    flex-grow: 1;
+}
+
+.order-card__title {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+
+.order-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-card__variant {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.order-card__price {
+    margin-left: auto;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+
+.order-card__price--original {
+    text-decoration: line-through;
+    font-size: 1.2rem;
+    color: #888;
+    margin-left: 10px;
+}
+
+.order-card__quantity-label,
+.order-card__quantity-value {
+    font-size: 1.2rem;
+}
+
+.order-card__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    align-items: flex-end;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 12px;
+}
+
+.order-card__total {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.order-card__total span {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.order-card__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.order-card__action-button {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

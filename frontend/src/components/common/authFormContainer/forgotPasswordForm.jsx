@@ -1,11 +1,11 @@
 import React from 'react';
 import './forgotPasswordForm.css';
 
-function ForgotPasswordForm() {
+function ForgotPasswordForm({ setFormType }) {
     return (
         <>
             {/* Forgot Password Form */}
-            <div className="auth-form forgot-password-form hidden">
+            <div className="auth-form forgot-password-form">
                 <div className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Đặt lại mật khẩu</h3>
@@ -24,8 +24,8 @@ function ForgotPasswordForm() {
                     </div>
 
                     <div className="auth-form__controls">
-                        <button className="btn btn-normal mr-8px back-to-login">TRỞ LẠI</button>
-                        <button className="btn btn-primary next-check-email-notification-btn">
+                        <button onClick={() => setFormType('login')} className="btn btn-normal mr-8px back-to-login">TRỞ LẠI</button>
+                        <button onClick={() => setFormType('checkEmail')} className="btn btn-primary next-check-email-notification-btn">
                             TIẾP THEO
                         </button>
                     </div>
