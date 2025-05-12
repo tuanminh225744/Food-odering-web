@@ -6,6 +6,8 @@ import Login from './pages/login/login.jsx';
 import Register from './pages/register/register.jsx';
 import Profile from './pages/profile/profile.jsx';
 import Product from './pages/product/product.jsx';
+import Cart from './pages/cart/cart.jsx';
+import Admin from './pages/admin/admin.jsx';
 
 function App() {
 
@@ -19,8 +21,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/cart" element={<h1>Cart Page</h1>} />
-          <Route path="/admin" element={<h1>Admin Page</h1>} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </Router>
     </div>

@@ -1,0 +1,152 @@
+.cart {
+    /* border: 1px solid #ddd; */
+    /* padding: 16px; */
+    display: flex;
+    flex-direction: column;
+    padding-top: 36px;
+    /* padding-bottom: 80px; */
+    min-height: calc(100vh - var(--header-height));
+}
+
+.cart__header {
+    margin-bottom: 10px;
+    height: 60px;
+}
+
+.cart__column {
+    font-size: 1.4rem;
+}
+
+.cart__header,
+.cart__item,
+.cart__footer {
+    background-color: var(--white-color);
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart__item {
+    border: 1px solid #eee;
+}
+
+.cart__checkbox-all,
+.cart__checkbox {
+    transform: scale(1.4);
+    margin-left: 8px;
+}
+
+.cart__product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart__image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.cart__title {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.cart__variant {
+    margin-top: 6px;
+    font-size: 1.2rem;
+}
+
+.cart__price-old {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+.cart__price-current {
+    font-size: 1.2rem;
+}
+
+.cart__quantity {
+    display: flex;
+    gap: 1px;
+}
+
+
+
+.cart__btn {
+    padding: 4px 8px;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.cart__input {
+    width: 40px;
+    text-align: center;
+    padding: 4px;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.cart__total {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.cart__action a {
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.cart__footer {
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 16px;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart__select-all {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+
+}
+
+.cart__select-all span {
+    font-size: 1.4rem;
+}
+
+.cart__delete {
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+
+.cart__checkout-group {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    gap: 30px;
+}
+
+.cart__total-price--text {
+    font-size: 1.2rem;
+}
+
+.cart__total-price {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 6px;
+}

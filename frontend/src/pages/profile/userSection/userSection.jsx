@@ -6,7 +6,7 @@ import ChangePassword from './changePassword/changePassword';
 import './userSection.css';
 
 const UserSection = () => {
-    const [activeSection, setActiveSection] = useState('profile'); // 'profile' hoặc 'orders'
+    const [activeSection, setActiveSection] = useState('profile');
 
     return (
         <div className="app__container">
@@ -16,7 +16,7 @@ const UserSection = () => {
                     {activeSection === 'profile' && <UserProfile />}
                     {activeSection === 'orders' && <UserOrders />}
                     {activeSection === 'changePassword' && <ChangePassword />}
-                    {/* Thêm các phần khác nếu cần */}
+
                 </div>
             </div>
         </div>
