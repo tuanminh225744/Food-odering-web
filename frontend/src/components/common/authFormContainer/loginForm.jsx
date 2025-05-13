@@ -1,16 +1,27 @@
 import React from "react";
 import './loginForm.css';
+import { loginUser } from "../../../redux/apiRequest";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ setFormType }) => {
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-    };
     const [userEmail, setUserEmail] = React.useState('');
     const [userPassword, setUserPassword] = React.useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const newUser = {
+            email: userEmail,
+            password: userPassword,
+        }
+        loginUser(newUser, dispatch, navigate);
+    };
+
     return (
         <>
-            <div className="auth-form login-form">
+            <form onSubmit={handleLogin} className="auth-form login-form">
                 <div className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Đăng nhập</h3>
@@ -32,6 +43,7 @@ const LoginForm = ({ setFormType }) => {
                                 id="login-user-password"
                                 className="auth-form__input"
                                 placeholder="Mật khẩu của bạn"
+                                onChange={(e) => setUserPassword(e.target.value)}
                             />
                             <span className="error-message"></span>
                         </div>
@@ -46,8 +58,7 @@ const LoginForm = ({ setFormType }) => {
                     </div>
 
                     <div className="auth-form__controls">
-
-                        <button onClick={handleLogin} className="btn btn-primary login-btn">ĐĂNG NHẬP</button>
+                        <button type="submit" className="btn btn-primary login-btn">ĐĂNG NHẬP</button>
                     </div>
                 </div>
 
@@ -61,7 +72,7 @@ const LoginForm = ({ setFormType }) => {
                         <span className="auth-form__social-title">Kết nối với Google</span>
                     </a>
                 </div>
-            </div>
+            </form>
         </>
     );
 };
