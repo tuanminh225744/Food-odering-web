@@ -2,6 +2,12 @@ import React from "react";
 import './loginForm.css';
 
 const LoginForm = ({ setFormType }) => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+    };
+    const [userEmail, setUserEmail] = React.useState('');
+    const [userPassword, setUserPassword] = React.useState('');
     return (
         <>
             <div className="auth-form login-form">
@@ -18,6 +24,7 @@ const LoginForm = ({ setFormType }) => {
                                 id="login-user-email"
                                 className="auth-form__input"
                                 placeholder="Email của bạn"
+                                onChange={(e) => setUserEmail(e.target.value)}
                             />
                             <span className="error-message"></span>
                             <input
@@ -40,7 +47,7 @@ const LoginForm = ({ setFormType }) => {
 
                     <div className="auth-form__controls">
 
-                        <button className="btn btn-primary login-btn">ĐĂNG NHẬP</button>
+                        <button onClick={handleLogin} className="btn btn-primary login-btn">ĐĂNG NHẬP</button>
                     </div>
                 </div>
 

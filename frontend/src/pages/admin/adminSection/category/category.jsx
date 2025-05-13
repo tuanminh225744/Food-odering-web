@@ -4,7 +4,7 @@ import './category.css'
 function Category({ currentSection, setCurrentSection }) {
     return (
         <div className="grid__column-2">
-            <nav className="category">
+            <nav className="category mt32">
                 <h3 className="category-heading">
                     <i className="category-heading-icon fa-solid fa-bars"></i>
                     Menu
