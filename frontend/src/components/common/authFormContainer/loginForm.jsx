@@ -1,6 +1,6 @@
 import React from "react";
 import './loginForm.css';
-import { loginUser } from "../../../redux/apiRequest";
+import { loginUser } from "../../../api/loginAPI";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -12,20 +12,35 @@ const LoginForm = ({ setFormType }) => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const newUser = {
+        const user = {
             email: userEmail,
             password: userPassword,
         }
-        loginUser(newUser, dispatch, navigate);
+        loginUser(user, dispatch, navigate);
     };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleLogin(e);
+        }
+    }
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        setFormType('register');
+        navigate('/register');
+    }
+
+
+
 
     return (
         <>
-            <form onSubmit={handleLogin} className="auth-form login-form">
+            <form onSubmit={handleLogin} onKeyDown={handleKeyDown} className="auth-form login-form">
                 <div className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Đăng nhập</h3>
-                        <button onClick={() => setFormType('register')} className="auth-form__switch-btn">Đăng ký</button>
+                        <button onClick={handleRegister} className="auth-form__switch-btn">Đăng ký</button>
                     </div>
 
                     <div className="auth-form__form">

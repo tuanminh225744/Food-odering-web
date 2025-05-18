@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import './navbar.css';
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+    const user = useSelector((state) => state.auth.login.currentUser.others);
     return (
         <>
             <nav className="navbar">
@@ -34,18 +36,18 @@ const Navbar = () => {
 
                 <ul className="navbar-list">
                     <li className="navbar-item navbar-item--has-notify">
-                        <a className="navbar-item-link" href="">
+                        <a className="navbar-item-link" href="#">
                             <i className="navbar-icon fa-solid fa-bell"></i>
                             Thông báo
                         </a>
                         {/* cua so thong bao */}
-                        <div className="navbar__notify">
+                        {/* <div className="navbar__notify">
                             <header className="navbar__notify-header">
                                 <p>Thông báo mới nhận</p>
                             </header>
                             <ul className="navbar__notify-list">
                                 <li className="navbar__notify-item">
-                                    <a href="" className="navbar__notify-link">
+                                    <a href="#" className="navbar__notify-link">
                                         <img src="/assets/img/anh-thong-bao/anh-my-pham.jpg" alt="" className="navbar__notify-img" />
                                         <div className="navbar__notify-info">
                                             <span className="navbar__notify-name">
@@ -63,17 +65,21 @@ const Navbar = () => {
                                     <a href="" className="navbar__notify-footer-btn">Xem tất cả</a>
                                 </footer>
                             </div>
-                        </div>
+                        </div> */}
                     </li>
                     <li className="navbar-item">
-                        <a className="navbar-item-link" href="admin-page.html">
+                        <a className="navbar-item-link" href="#">
                             <i className="navbar-icon fa-solid fa-circle-question"></i>
                             Trợ giúp
                         </a>
                     </li>
                     <li className="navbar-item navbar-user">
-                        <img src="/assets/img/anh_user/user.jpg" alt="" className="navbar-user-img" />
-                        <span className="navbar-user-name">Shiina Mahiru</span>
+                        <img
+                            src={user.userImgURL || "/assets/img/anh_user/default-user.jpg"}
+                            alt=""
+                            className="navbar-user-img"
+                        />
+                        <span className="navbar-user-name">{user.username}</span>
                         <ul className="navbar-user-menu">
                             <li className="navbar-user-item navbar-user-item--user-profile-btn">
                                 <a href="#">Tài khoản của tôi</a>

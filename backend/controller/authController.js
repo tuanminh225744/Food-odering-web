@@ -46,16 +46,16 @@ const authController = {
         return jwt.sign({ id: user._id }, process.env.JWT_REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
     },
 
-    // Đăng nhập
+    // Đăng nhập 
     login: async (req, res) => {
         try {
             // Kiểm tra dữ liệu đầu vào
-            if (!req.body.username || !req.body.password) {
+            if (!req.body.email || !req.body.password) {
                 return res.status(400).json({ message: 'Missing required fields' });
             }
 
-            // Tìm người dùng theo tên đăng nhập
-            const user = await User.findOne({ username: req.body.username });
+            // Tìm người dùng theo email
+            const user = await User.findOne({ email: req.body.email });
             if (!user) return res.status(404).json('User not found!');
 
             // Kiểm tra mật khẩu

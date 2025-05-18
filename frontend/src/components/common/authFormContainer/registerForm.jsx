@@ -1,14 +1,49 @@
 import React from 'react';
 import './registerForm.css';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../../api/registerAPI';
+
 
 function RegisterForm({ setFormType }) {
+    const [userEmail, setUserEmail] = React.useState('');
+    const [userPassword, setUserPassword] = React.useState('');
+    const [userName, setUserName] = React.useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        setFormType('login');
+        navigate('/login');
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleRegister(e);
+        }
+    }
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const user = {
+            email: userEmail,
+            password: userPassword,
+            username: userName,
+        }
+        registerUser(user, dispatch, navigate);
+    }
+
+
+
+
     return (
         <>
-            <div className="auth-form register-form">
+            <form onSubmit={handleRegister} onKeyDown={handleKeyDown} className="auth-form register-form">
                 <div className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Đăng ký</h3>
-                        <button onClick={() => setFormType('login')} className="auth-form__switch-btn">Đăng nhập</button>
+                        <button onClick={handleLogin} className="auth-form__switch-btn">Đăng nhập</button>
                     </div>
 
                     <div className="auth-form__form">
@@ -18,6 +53,7 @@ function RegisterForm({ setFormType }) {
                                 id="register-user-name"
                                 className="auth-form__input"
                                 placeholder="Tên của bạn"
+                                onChange={(e) => setUserName(e.target.value)}
                             />
                             <span className="error-message"></span>
 
@@ -26,6 +62,7 @@ function RegisterForm({ setFormType }) {
                                 id="register-user-email"
                                 className="auth-form__input"
                                 placeholder="Email của bạn"
+                                onChange={(e) => setUserEmail(e.target.value)}
                             />
                             <span className="error-message"></span>
 
@@ -34,6 +71,7 @@ function RegisterForm({ setFormType }) {
                                 id="register-user-password"
                                 className="auth-form__input"
                                 placeholder="Mật khẩu của bạn"
+                                onChange={(e) => setUserPassword(e.target.value)}
                             />
                             <span className="error-message"></span>
 
@@ -81,7 +119,7 @@ function RegisterForm({ setFormType }) {
                         <span className="auth-form__social-title">Kết nối với Google</span>
                     </a>
                 </div>
-            </div>
+            </form>
         </>
     )
 }

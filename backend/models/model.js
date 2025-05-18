@@ -84,6 +84,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    userImgURL: {
+        type: String,
+    },
 });
 
 // Cart Schema

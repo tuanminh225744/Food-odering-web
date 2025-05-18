@@ -1,12 +1,25 @@
 import React from "react";
 import './headerSearch.css';
+import { useNavigate } from "react-router-dom";
 
 const HeaderSearch = () => {
+
+    const navigate = useNavigate();
+    const handleClickLogo = (e) => {
+        e.preventDefault();
+        navigate('/home');
+    }
+
+    const handleClickCart = (e) => {
+        e.preventDefault();
+        navigate('/cart');
+    }
+
     return (
         <div className="header__with-search">
             {/* logo */}
             <div className="header__logo">
-                <a href="#" className="header__logo-link">
+                <button onClick={handleClickLogo} className="header__logo-btn">
                     <svg viewBox="0 0 192 65" class="header__logo-img">
                         <g fill-rule="evenodd">
                             <path fill="#fff"
@@ -14,7 +27,7 @@ const HeaderSearch = () => {
                             </path>
                         </g>
                     </svg>
-                </a>
+                </button>
             </div>
 
             {/* header search */}
@@ -26,15 +39,7 @@ const HeaderSearch = () => {
                         placeholder="Tìm kiếm sản phẩm"
                     />
 
-                    {/* search history */}
-                    <div className="header__search-history">
-                        <h3 className="header__search-history-heading">Lịch sử tìm kiếm</h3>
-                        <ul className="header__search-history-list">
-                            <li className="header__search-history-item"><a href="">Son môi</a></li>
-                            <li className="header__search-history-item"><a href="">Kem dưỡng da</a></li>
-                            <li className="header__search-history-item"><a href="">Kem trị mụn</a></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <button className="header__search-btn">
                     <i className="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
@@ -43,8 +48,8 @@ const HeaderSearch = () => {
 
             {/* cart */}
             <div className="header__cart">
-                <div className="header__cart-wrap">
-                    <i className="header__cart-icon fa-solid fa-cart-shopping"></i>
+                <div onClick={handleClickCart} className="header__cart-wrap">
+                    <div className="header__cart-icon fa-solid fa-cart-shopping"></div>
                     <span className="header__cart-cotice hidden">2</span>
                     <div className="header__cart-list">
                         {/* Nếu không có sản phẩm: header__cart-list--no-cart */}
