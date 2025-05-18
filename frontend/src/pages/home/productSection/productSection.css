@@ -223,15 +223,21 @@ i.home-product-item__like-icon-fill {
     color: #f63d30;
 }
 
+.home-product-item__star-rate {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
 
 .home-product-item__rating {
     font-size: 0.8rem;
     color: #d5d5d5;
-    margin: -1px 0 0 auto
+    margin: -1px 0 0 0
 }
 
 .home-product-item__star-gold {
     color: var(--star-gold-color);
+    font-size: 1.2rem;
 }
 
 .home-product-item__sold {

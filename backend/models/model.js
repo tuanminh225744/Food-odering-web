@@ -19,7 +19,19 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    saleOffPrecent: {
+        type: Number,
+        default: 0,
+    },
+    starRating: {
+        type: Number,
+        default: 0,
+    },
     category: {
+        type: String,
+        required: true,
+    },
+    type: {
         type: String,
         required: true,
     },

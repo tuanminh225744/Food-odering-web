@@ -1,7 +1,24 @@
 import React from "react";
 import './productSection.css';
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const ProductSection = () => {
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/food');
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Lỗi khi lấy sản phẩm:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <div className="app__container">
             <div className="grid">
@@ -76,50 +93,41 @@ const ProductSection = () => {
 
                         <div className="home-product">
                             <div className="grid__row">
-                                <div className="grid__column-2-4">
-                                    <a href="" className="home-product-item">
-                                        <div
-                                            className="home-product-item__img"
-                                            style={{
-                                                backgroundImage:
-                                                    'url(https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m5tylr8wm9x425_tn.webp)'
-                                            }}
-                                        ></div>
-                                        <h4 className="home-product-item__name">
-                                            Bộ Quần Áo, Bộ Nam, Áo In Chữ Paris Siêu Đẹp - Bộ Cộc Jor Đan Chất Liệu Poly Cá Sấu Thoáng Mát 2025
-                                        </h4>
-                                        <span className="home-product-item__price">
-                                            <span className="home-product-item__price-old">150.000</span>
-                                            <span className="home-product-item__price-current">75.000</span>
-                                        </span>
-                                        <div className="home-product-item__action">
-                                            <span className="home-product-item__like home-product-item__like--liked">
-                                                <i className="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i className="home-product-item__like-icon-fill fa-solid fa-heart"></i>
+                                {products.map((product) => (
+                                    <div className="grid__column-2-4" key={product._id}>
+                                        <a href={`/product/${product._id}`} className="home-product-item">
+                                            <div
+                                                className="home-product-item__img"
+                                                style={{ backgroundImage: `url(${product.imageUrl})` }}
+                                            ></div>
+                                            <h4 className="home-product-item__name">
+                                                {product.name}
+                                            </h4>
+                                            <span className="home-product-item__price">
+                                                <span className="home-product-item__price-old">
+                                                    {product.price?.toLocaleString()}₫
+                                                </span>
+                                                <span className="home-product-item__price-current">
+                                                    {product.price?.toLocaleString()}₫
+                                                </span>
                                             </span>
-                                            <div className="home-product-item__rating">
-                                                <i className="home-product-item__star-gold fa-solid fa-star"></i>
-                                                <i className="home-product-item__star-gold fa-solid fa-star"></i>
-                                                <i className="home-product-item__star-gold fa-solid fa-star"></i>
-                                                <i className="home-product-item__star-gold fa-solid fa-star"></i>
-                                                <i className="fa-solid fa-star"></i>
+                                            <div className="home-product-item__action">
+                                                <div className="home-product-item__rating">
+                                                    <span className="home-product-item__star-rate">
+                                                        {product.starRating || '0.0'}
+                                                    </span>
+                                                    <i className="home-product-item__star-gold fa-solid fa-star"></i>
+                                                </div>
                                             </div>
-                                            <span className="home-product-item__sold">88 đã bán</span>
-                                        </div>
-                                        <div className="home-product-item__origin">
-                                            <span className="home-product-item__brand">BUZZ</span>
-                                            <div className="home-product-item__origin-name">Hà Nội</div>
-                                        </div>
-                                        <div className="home-product-item__favourite">
-                                            <i className="fa-solid fa-check"></i>
-                                            Yêu thích
-                                        </div>
-                                        <div className="home-product-item__sale-off">
-                                            <span className="home-product-item__sale-off-persent">50%</span>
-                                            <span className="home-product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                            <div className="home-product-item__sale-off">
+                                                <span className="home-product-item__sale-off-persent">
+                                                    {product.saleOffPrecent || 0}%
+                                                </span>
+                                                <span className="home-product-item__sale-off-label">GIẢM</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 

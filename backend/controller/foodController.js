@@ -30,6 +30,9 @@ const foodController = {
             imageUrl: req.body.imageUrl,
             price: req.body.price,
             category: req.body.category,
+            saleOffPrecent: req.body.saleOffPrecent || 0,
+            starRating: req.body.starRating || 0,
+            type: req.body.type,
         });
 
         try {
