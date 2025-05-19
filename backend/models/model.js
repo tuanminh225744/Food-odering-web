@@ -9,7 +9,6 @@ const foodSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
     },
     imageUrl: {
         type: String,
@@ -98,7 +97,7 @@ const userSchema = new mongoose.Schema({
     },
     userImgURL: {
         type: String,
-    },
+    }
 });
 
 // Cart Schema

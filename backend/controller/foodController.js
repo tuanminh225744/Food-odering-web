@@ -11,6 +11,16 @@ const foodController = {
         }
     },
 
+    // Lấy số lượng món ăn
+    getFoodCount: async (req, res) => {
+        try {
+            const count = await Food.countDocuments();
+            res.status(200).json({ count });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
     // Lấy món ăn theo ID
     getFoodById: async (req, res) => {
         try {
@@ -21,6 +31,46 @@ const foodController = {
             res.status(500).json({ message: error.message });
         }
     },
+
+    // Lấy món ăn theo loại
+    getFoodByType: async (req, res) => {
+        try {
+            const foods = await Food.find({ type: req.params.type });
+            if (!foods.length) return res.status(404).json({ message: 'No food found for this type' });
+            res.status(200).json(foods);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // Lấy món ăn theo giá từ thấp đến cao hoặc từ cao đến thấp 
+    getFoodByPrice: async (req, res) => {
+        const { sort } = req.params;
+        const sortOrder = sort === 'asc' ? 1 : -1;
+
+        try {
+            const foods = await Food.find().sort({ price: sortOrder });
+            if (!foods.length) return res.status(404).json({ message: 'No food found' });
+            res.status(200).json(foods);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // Lấy món ăn theo loại và giá từ thấp đến cao hoặc từ cao đến thấp
+    getFoodByTypeAndPrice: async (req, res) => {
+        const { type, sort } = req.params;
+        const sortOrder = sort === 'asc' ? 1 : -1;
+
+        try {
+            const foods = await Food.find({ type }).sort({ price: sortOrder });
+            if (!foods.length) return res.status(404).json({ message: 'No food found for this type' });
+            res.status(200).json(foods);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
 
     // Tạo món ăn mới
     createFood: async (req, res) => {

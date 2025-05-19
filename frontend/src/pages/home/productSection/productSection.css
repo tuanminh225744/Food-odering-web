@@ -169,7 +169,7 @@
     color: var(--text-color);
     line-height: 1.8rem;
     margin: 10px 10px 6px;
-    max-height: 3.6rem;
+    height: 3.6rem;
     overflow: hidden;
     display: block;
     display: -webkit-box;
@@ -321,4 +321,13 @@ i.home-product-item__like-icon-fill {
 
 .home-product__pagination {
     margin: 48px 0 32px;
+}
+
+.select-input__link {
+    cursor: pointer;
+}
+
+.pagination-item__link {
+    border: none;
+    background-color: transparent;
 }
