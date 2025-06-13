@@ -20,11 +20,11 @@ const authController = {
                 return res.status(400).json({ message: 'Useremail already exists!' });
             }
 
-            // Kiểm tra tên người dùng đã tồn tại chưa
-            const existingUsername = await User.find({ username: req.body.username });
-            if (existingUsername.length > 0) {
-                return res.status(400).json({ message: 'Username already exists!' });
-            }
+            // // Kiểm tra tên người dùng đã tồn tại chưa
+            // const existingUsername = await User.find({ username: req.body.username });
+            // if (existingUsername.length > 0) {
+            //     return res.status(400).json({ message: 'Username already exists!' });
+            // }
 
             // Hash mật khẩu
             const salt = await bcrypt.genSalt(10);

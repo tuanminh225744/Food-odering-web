@@ -50,6 +50,18 @@ function RegisterForm({ setFormType }) {
             return;
         }
 
+        // Kiểm tra chiều dài tên người dùng
+        if (userName.length < 3 || userName.length > 20) {
+            setErrorMessages({ userName: 'Tên người dùng phải từ 3 đến 20 ký tự' });
+            return;
+        }
+
+        // Kiểm tra chiều dài mật khẩu
+        if (userPassword.length < 6) {
+            setErrorMessages({ userPassword: 'Mật khẩu phải có ít nhất 6 ký tự' });
+            return;
+        }
+
         // Kiểm tra người dùng đã nhập mật khẩu và xác nhận mật khẩu giống nhau chưa
         if (userPassword !== userConfirmPassword) {
             setErrorMessages({ userConfirmPassword: 'Mật khẩu xác nhận không khớp' });
@@ -67,8 +79,6 @@ function RegisterForm({ setFormType }) {
             // Hiển thị lỗi nếu đăng ký không thành công
             if (res.error.message === 'Useremail already exists!') {
                 setErrorMessages({ userEmail: 'Người dùng đã tồn tại' });
-            } else if (res.error.message === 'Username already exists!') {
-                setErrorMessages({ userName: 'Tên người dùng đã tồn tại' });
             } else {
                 setErrorMessages({ general: 'Đăng ký không thành công, vui lòng thử lại sau' });
             }
