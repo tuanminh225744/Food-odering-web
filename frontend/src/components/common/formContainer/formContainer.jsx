@@ -4,12 +4,12 @@ import ForgotPasswordForm from "./forgotPasswordForm";
 import RegisterForm from "./registerForm";
 import LoginForm from "./loginForm";
 import PasswordConfirmForm from "./passwordConfirmForm";
-import './authFormContainer.css';
+import './formContainer.css';
 
-const AuthFormContainer = ({ formType, setFormType }) => {
+const FormContainer = ({ formType, setFormType }) => {
     return (
         <>
-            <div className="AuthFormContainerOverlay">
+            <div className="FormContainerOverlay">
                 {formType === 'login' && <LoginForm setFormType={setFormType} />}
                 {formType === 'register' && <RegisterForm setFormType={setFormType} />}
                 {formType === 'forgotPassword' && <ForgotPasswordForm setFormType={setFormType} />}
@@ -20,4 +20,4 @@ const AuthFormContainer = ({ formType, setFormType }) => {
     );
 }
 
-export default AuthFormContainer;
+export default FormContainer;

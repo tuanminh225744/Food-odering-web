@@ -18,8 +18,16 @@ export const registerUser = async (user, dispatch, navigate) => {
         });
 
         // Chuyển hướng đến trang đăng nhập
-        navigate('/login');
+        navigate('/login', { state: { successMessage: 'Đăng ký thành công! Vui lòng đăng nhập.' } });
+        return {
+            success: true,
+            message: 'Đăng ký thành công, vui lòng đăng nhập',
+        };
     } catch (err) {
         dispatch(registerFailure());
+        return {
+            success: false,
+            error: err.response ? err.response.data : 'Đăng ký không thành công, vui lòng thử lại sau',
+        };
     }
 };

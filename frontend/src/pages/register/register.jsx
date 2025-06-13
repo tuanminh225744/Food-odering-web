@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import AuthFormContainer from "../../components/common/authFormContainer/authFormContainer";
+import FormContainer from "../../components/common/formContainer/formContainer";
 
 const Register = () => {
     const [formType, setFormType] = useState('register');
     return (
         <>
-            <AuthFormContainer formType={formType} setFormType={setFormType} />
+            <FormContainer formType={formType} setFormType={setFormType} />
         </>
     );
 }

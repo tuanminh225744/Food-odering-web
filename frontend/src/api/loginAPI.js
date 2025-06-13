@@ -7,7 +7,10 @@ export const loginUser = async (user, dispatch, navigate) => {
         const res = await axios.post(`http://localhost:5000/api/auth/login`, user);
         dispatch(loginSuccess(res.data));
         navigate('/home');
+        return { success: true };
     } catch (err) {
         dispatch(loginFailure());
+        console.error('Login error:', err.response ? err.response.data : err.message);
+        return { success: false, error: err.response ? err.response.data : 'Đăng nhập không thành công' };
     }
 }

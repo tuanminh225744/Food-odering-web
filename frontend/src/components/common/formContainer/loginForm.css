@@ -8,3 +8,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
+
+.error-message,
+.success-message {
+    color: red;
+    font-size: 1.4rem;
+    padding-top: 4px;
+    display: block;
+}
