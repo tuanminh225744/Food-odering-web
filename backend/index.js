@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 const morgan = require('morgan');
+// Nạp biến môi trường trước khi require các router khác
+dotenv.config();
+
 const foodRouter = require('./routes/food.js');
 const cartRouter = require('./routes/cart.js');
 const userRouter = require('./routes/user.js');
@@ -17,7 +20,6 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // Kết nối đến MongoDB
-dotenv.config();
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => {

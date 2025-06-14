@@ -1,7 +1,17 @@
 import React from 'react';
 import './checkEmail.css';
+import { useNavigate } from 'react-router-dom';
 
 function CheckEmail({ setFormType }) {
+
+    const navigate = useNavigate();
+
+    // Xử lý sự kiện nhấn nút trở lại đăng nhập
+    const handleBackToLogin = (e) => {
+        e.preventDefault();
+        navigate('/login');
+    }
+
     return (
         <>
             {/* Check Email Notification Form */}

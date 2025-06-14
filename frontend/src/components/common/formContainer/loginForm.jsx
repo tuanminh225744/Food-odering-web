@@ -16,7 +16,6 @@ const LoginForm = ({ setFormType }) => {
     const successMessage = location.state?.successMessage || '';
 
     // Thực hiện đăng nhập
-    // Trả về lỗi nếu đăng nhập không thành công
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -62,6 +61,12 @@ const LoginForm = ({ setFormType }) => {
         navigate('/register');
     }
 
+    // Chuyển hướng đến trang quên mật khẩu
+    const handleForgotPassword = (e) => {
+        e.preventDefault();
+        navigate('/forgot-password');
+    }
+
 
 
 
@@ -101,7 +106,7 @@ const LoginForm = ({ setFormType }) => {
 
                     <div className="auth-form-aside">
                         <div className="auth-form__help">
-                            <button onClick={() => setFormType('forgotPassword')} className="auth-form__help-link auth-form__forgot">
+                            <button onClick={handleForgotPassword} className="auth-form__help-link auth-form__forgot">
                                 Quên mật khẩu
                             </button>
                         </div>

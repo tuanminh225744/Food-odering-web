@@ -8,6 +8,9 @@ import Profile from './pages/profile/profile.jsx';
 import Product from './pages/product/product.jsx';
 import Cart from './pages/cart/cart.jsx';
 import Admin from './pages/admin/admin.jsx';
+import ForgotPassword from './pages/forgotPassword/forgotPassword.jsx';
+import CheckEmail from './pages/checkEmail/checkEmail.jsx';
+import ResetPassword from './pages/resetPassword/resetPassword.jsx';
 
 function App() {
 
@@ -24,6 +27,12 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/check-email" element={<CheckEmail />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          {/* Redirect all other paths to home */}
+
+
         </Routes>
       </Router>
     </div>
