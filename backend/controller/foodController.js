@@ -1,10 +1,18 @@
 const { Food, Cart, User, Order } = require('../models/model.js');
 
 const foodController = {
-    // Lấy tất cả món ăn
+    // Lấy tất cả món ăn hoặc tìm kiếm theo tên
     getAllFood: async (req, res) => {
         try {
-            const foods = await Food.find();
+            const search = req.query.search;
+            let foods;
+            if (search) {
+                foods = await Food.find({
+                    name: { $regex: search, $options: 'i' }
+                });
+            } else {
+                foods = await Food.find();
+            }
             res.status(200).json(foods);
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -79,10 +87,10 @@ const foodController = {
             description: req.body.description,
             imageUrl: req.body.imageUrl,
             price: req.body.price,
-            category: req.body.category,
             saleOffPrecent: req.body.saleOffPrecent || 0,
             starRating: req.body.starRating || 0,
             type: req.body.type,
+            quantity: req.body.quantity || 0 // Số lượng mặc định là 0
         });
 
         try {

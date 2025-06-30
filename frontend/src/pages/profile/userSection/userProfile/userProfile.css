@@ -179,3 +179,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.user-email {
+    margin-left: 8px;
+}

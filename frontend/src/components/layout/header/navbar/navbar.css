@@ -97,10 +97,10 @@
     content: "";
     display: block;
     position: absolute;
-    top: -8px;
+    top: -12px;
     right: 0;
-    width: 130px;
-    height: 16px;
+    width: 200px;
+    height: 20px;
     background-color: transparent;
 }
 

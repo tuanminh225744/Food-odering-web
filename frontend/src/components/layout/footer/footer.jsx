@@ -37,6 +37,7 @@ const Footer = () => {
                     </div>
 
                     <div className="grid__column-2-4"></div>
+                    <div className="grid__column-2-4"></div>
 
                     <div className="grid__column-2-4">
                         <h3 className="footer-heading">Theo dõi chúng tôi</h3>
@@ -62,32 +63,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="grid__column-2-4">
-                        <h3 className="footer-heading">Vào cửa hàng trên ứng dụng</h3>
-                        <div className="footer__download">
-                            <img
-                                src="./assets/img/anh-tai-app/anhQR.png"
-                                alt="QR Code"
-                                className="footer__download-qr"
-                            />
-                            <div className="footer__download-apps">
-                                <a href="#" className="footer__download-app-link">
-                                    <img
-                                        src="./assets/img/anh-tai-app/google-play.png"
-                                        alt="Google Play"
-                                        className="footer__download-app-img"
-                                    />
-                                </a>
-                                <a href="#" className="footer__download-app-link">
-                                    <img
-                                        src="./assets/img/anh-tai-app/anh-app-store.png"
-                                        alt="App Store"
-                                        className="footer__download-app-img"
-                                    />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </footer>

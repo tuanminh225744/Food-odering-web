@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Định nghĩa các schema cho các collection trong MongoDB
-// Food Schema
+// Food Schema 
 const foodSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -26,13 +26,13 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    category: {
-        type: String,
-        required: true,
-    },
     type: {
         type: String,
         required: true,
+    },
+    quantity: {
+        type: Number,
+        default: 0, // Số lượng mặc định là 0
     },
 });
 
@@ -63,6 +63,19 @@ const orderSchema = new mongoose.Schema({
     orderDate: {
         type: Date,
         default: Date.now,
+    },
+    shippingAddress: {
+        type: String,
+        required: true,
+    },
+    shippingPhone: {
+        type: String,
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
+        default: 'Pending',
     },
 });
 
@@ -96,6 +109,12 @@ const userSchema = new mongoose.Schema({
     },
     userImgURL: {
         type: String,
+    },
+    resetPasswordCode: {
+        type: String,
+    },
+    resetPasswordExpires: {
+        type: Number,
     }
 });
 

@@ -1,0 +1,24 @@
+.search-results {
+    padding: 20px 0;
+}
+
+.search-results h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: #999;
+    font-size: 16px;
+}
+
+.home-product-item {
+    cursor: pointer;
+}
+
+.home-product-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .05);
+}

@@ -29,6 +29,10 @@
     margin-left: 9px;
 }
 
+.category-item {
+    cursor: pointer;
+}
+
 .category-item--active .category-item-link {
     color: var(--primary-color);
 }
@@ -140,6 +144,7 @@
 
 .home-product-item {
     margin-top: 10px;
+    padding-bottom: 10px;
     position: relative;
     background-color: var(--white-color);
     border-radius: 2px;

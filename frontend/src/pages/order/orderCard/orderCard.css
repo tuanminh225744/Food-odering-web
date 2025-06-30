@@ -1,0 +1,162 @@
+.order-card {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+.order-card__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.order-card__shop-name {
+    color: var(--black-color);
+    font-size: 1.4rem;
+}
+
+
+.order-card__status {
+    font-size: 1.4rem;
+    /* margin-left: auto; */
+    font-weight: 500;
+    color: var(--primary-color);
+    display: block;
+}
+
+.order-card__id {
+    font-size: 1.2rem;
+    color: #000;
+    display: block;
+}
+
+
+.order-card__body {
+    display: flex;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    /* Center items vertically */
+}
+
+.order-card__image {
+    width: 80px;
+    height: 80px;
+    /* Fixed height */
+    margin-right: 16px;
+    object-fit: cover;
+    /* Maintain aspect ratio and cover container */
+    border: 1px solid #eee;
+    /* Optional: adds a light border */
+    border-radius: 4px;
+    /* Optional: rounds the corners */
+}
+
+.order-card__details {
+    flex-grow: 1;
+}
+
+.order-card__title {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+
+.order-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-card__variant {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.order-card__price {
+    margin-left: auto;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+
+.order-card__price--original {
+    text-decoration: line-through;
+    font-size: 1.2rem;
+    color: #888;
+    margin-left: 10px;
+}
+
+.order-card__quantity-label,
+.order-card__quantity-value {
+    font-size: 1.2rem;
+}
+
+.order-card__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 12px;
+}
+
+.order-card__total {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.order-card__total span {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.order-card__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.discount-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #ee4d2d;
+    margin-top: 4px;
+}
+
+.discount-code {
+    font-weight: 500;
+}
+
+.discount-percent {
+    font-weight: bold;
+}
+
+.original-price {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+}

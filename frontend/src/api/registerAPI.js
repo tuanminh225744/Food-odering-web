@@ -1,18 +1,17 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 import { registerStart, registerSuccess, registerFailure } from '../redux/authSlice';
-import { loginSuccess } from '../redux/authSlice';
 
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
         // Đăng ký user và lấy thông tin user mới (bao gồm _id)
-        const userRes = await axios.post('http://localhost:5000/api/auth/register', user);
+        const userRes = await axiosClient.post('/auth/register', user);
         dispatch(registerSuccess());
 
         const userId = userRes.data._id; // Lấy _id từ response
 
         // Tạo cart mới cho user
-        await axios.post('http://localhost:5000/api/cart', {
+        await axiosClient.post('/cart', {
             userID: userId,
             items: [],
         });

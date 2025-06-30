@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import './navbar.css';
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
     const user = useSelector((state) => state.auth.login.currentUser.others);
+    const location = useLocation();
+    const isAdminPage = location.pathname.startsWith('/admin');
+
     return (
         <>
             <nav className="navbar">
@@ -81,14 +85,18 @@ const Navbar = () => {
                         />
                         <span className="navbar-user-name">{user.username}</span>
                         <ul className="navbar-user-menu">
-                            <li className="navbar-user-item navbar-user-item--user-profile-btn">
-                                <a href="#">Tài khoản của tôi</a>
-                            </li>
-                            <li className="navbar-user-item navbar-user-item--order-btn">
-                                <a href="#">Đơn mua</a>
-                            </li>
+                            {!isAdminPage && (
+                                <>
+                                    <li className="navbar-user-item navbar-user-item--user-profile-btn">
+                                        <a href="/profile">Tài khoản của tôi</a>
+                                    </li>
+                                    <li className="navbar-user-item navbar-user-item--order-btn">
+                                        <a href="/orders">Đơn mua</a>
+                                    </li>
+                                </>
+                            )}
                             <li className="navbar-user-item navbar-user-item--logout-btn navbar-user-item--separate">
-                                <a href="#">Đăng xuất</a>
+                                <a href="/login">Đăng xuất</a>
                             </li>
                         </ul>
                     </li>

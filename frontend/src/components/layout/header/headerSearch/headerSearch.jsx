@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './headerSearch.css';
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../../../../api/axiosClient";
+import { useSelector } from "react-redux";
 
 const HeaderSearch = () => {
-
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [allProducts, setAllProducts] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const user = useSelector((state) => state.auth.login.currentUser.others);
+
+
+    // Fetch tất cả sản phẩm một lần
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await axiosClient.get('/food');
+                setAllProducts(response.data);
+            } catch (error) {
+                console.error('Lỗi khi lấy danh sách sản phẩm:', error);
+            }
+        };
+        fetchAllProducts();
+    }, []);
+
+    // Fetch giỏ hàng
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                const response = await axiosClient.get(`/cart/user/${user._id}`);
+                // Mỗi item: { foodId: {...}, quantity: ... }
+                const items = response.data.items || [];
+                setCartItems(items);
+                console.log('Giỏ hàng:', items);
+            } catch (error) {
+                console.error('Lỗi khi lấy giỏ hàng:', error);
+                setCartItems([]);
+            }
+        };
+        fetchCartItems();
+    }, []);
+
     const handleClickLogo = (e) => {
         e.preventDefault();
         navigate('/home');
@@ -14,6 +51,50 @@ const HeaderSearch = () => {
         e.preventDefault();
         navigate('/cart');
     }
+
+    const handleSearch = () => {
+        if (!searchTerm.trim()) return;
+
+        const searchResults = allProducts.filter(product => {
+            const searchLower = searchTerm.toLowerCase();
+            const name = (product.name ?? '').toLowerCase();
+            const description = (product.description ?? '').toLowerCase();
+
+            const searchWords = searchLower.split(' ');
+
+            return searchWords.some(word =>
+                name.includes(word) || description.includes(word)
+            );
+        });
+
+        // Sắp xếp kết quả theo độ phù hợp
+        const sortedResults = searchResults.sort((a, b) => {
+            const aName = (a.name || '').toLowerCase();
+            const bName = (b.name || '').toLowerCase();
+            const searchLower = searchTerm.toLowerCase();
+
+            // Ưu tiên các kết quả có từ khóa trong tên sản phẩm
+            const aHasInName = aName.includes(searchLower);
+            const bHasInName = bName.includes(searchLower);
+
+            if (aHasInName && !bHasInName) return -1;
+            if (!aHasInName && bHasInName) return 1;
+            return 0;
+        });
+
+        navigate('/search', {
+            state: {
+                searchResults: sortedResults,
+                searchTerm
+            }
+        });
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
     return (
         <div className="header__with-search">
@@ -37,11 +118,14 @@ const HeaderSearch = () => {
                         type="text"
                         className="header__search-input"
                         placeholder="Tìm kiếm sản phẩm"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleKeyDown} // Thay đổi từ onKeyPress sang onKeyDown
                     />
 
 
                 </div>
-                <button className="header__search-btn">
+                <button className="header__search-btn" onClick={handleSearch}>
                     <i className="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -50,24 +134,62 @@ const HeaderSearch = () => {
             <div className="header__cart">
                 <div onClick={handleClickCart} className="header__cart-wrap">
                     <div className="header__cart-icon fa-solid fa-cart-shopping"></div>
-                    <span className="header__cart-cotice hidden">2</span>
+                    {cartItems.length > 0 && (
+                        <span className="header__cart-notice">{cartItems.length}</span>
+                    )}
                     <div className="header__cart-list">
-                        {/* Nếu không có sản phẩm: header__cart-list--no-cart */}
-
-                        {/* Giỏ hàng trống */}
-                        <img
-                            src="./assets/img/no-cart.png"
-                            alt=""
-                            className="header__cart-no-cart-img hidden"
-                        />
-                        <span className="cart-list--no-cart-msg hidden">Chưa có sản phẩm</span>
-
-                        {/* Có sản phẩm trong giỏ */}
-                        <h4 className="header__cart-heading">Sản phẩm đã thêm</h4>
-                        <ul className="header__cart-list-items">
-                            {/* Các sản phẩm sẽ được thêm động tại đây */}
-                        </ul>
-                        <button className="header__cart-view-cart btn btn-primary">Xem giỏ hàng</button>
+                        {cartItems.length == 0 ? (
+                            <>
+                                <img
+                                    src="./assets/img/no-cart.png"
+                                    alt=""
+                                    className="header__cart-no-cart-img"
+                                    onError={(e) => {
+                                        e.target.onerror = null; // ngăn loop nếu ảnh fallback cũng lỗi
+                                        e.target.src = '../../assets/img/no-cart.png'; // ảnh phụ thay thế
+                                    }}
+                                />
+                                <span className="cart-list--no-cart-msg">Chưa có sản phẩm</span>
+                            </>
+                        ) : (
+                            <>
+                                <h4 className="header__cart-heading">Sản phẩm đã thêm</h4>
+                                <ul className="header__cart-list-items">
+                                    {cartItems.map((item, idx) => (
+                                        console.log("san pham:", item),
+                                        <li key={item.food?._id || idx} className="header__cart-item">
+                                            <img
+                                                src={item.foodId?.imageUrl}
+                                                alt={item.foodId?.name}
+                                                className="header__cart-img"
+                                            />
+                                            <div className="header__cart-item-info">
+                                                <div className="header__cart-item-head">
+                                                    <h5 className="header__cart-item-name">
+                                                        {item.foodId?.name}
+                                                    </h5>
+                                                    <div className="header__cart-item-price-wrap">
+                                                        <span className="header__cart-item-price">
+                                                            {item.foodId?.price?.toLocaleString()}₫
+                                                        </span>
+                                                        {/* <span className="header__cart-item-multiply">x</span> */}
+                                                        {/* <span className="header__cart-item-qnt">
+                                                            {item.quantity}
+                                                        </span> */}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <button
+                                    className="header__cart-view-cart btn btn-primary"
+                                    onClick={handleClickCart}
+                                >
+                                    Xem giỏ hàng
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

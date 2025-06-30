@@ -1,0 +1,20 @@
+.cart__title {
+    max-width: 280px;
+}
+
+.cart__delete-btn {
+    font-size: 1.2rem;
+    padding: 2px 4px;
+}
+
+/* Ẩn mũi tên lên/xuống trên input type="number" cho Chrome, Safari, Edge */
+.cart__input::-webkit-outer-spin-button,
+.cart__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ẩn mũi tên lên/xuống trên input type="number" cho Firefox */
+.cart__input[type="number"] {
+    -moz-appearance: textfield;
+}

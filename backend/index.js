@@ -12,6 +12,7 @@ const cartRouter = require('./routes/cart.js');
 const userRouter = require('./routes/user.js');
 const orderRouter = require('./routes/order.js');
 const authRouter = require('./routes/auth.js');
+const statisticalRouter = require('./routes/statistical.js');
 const bcypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -40,6 +41,7 @@ app.use('/api/cart', cartRouter);
 app.use('/api/user', userRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/statistical', statisticalRouter);
 
 // Hiển thị cổng mà server đang lắng nghe
 app.listen(process.env.PORT, () => {

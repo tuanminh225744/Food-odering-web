@@ -1,4 +1,5 @@
 import './App.css';
+import './assets/css/base.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/home/home.jsx';
@@ -8,9 +9,10 @@ import Profile from './pages/profile/profile.jsx';
 import Product from './pages/product/product.jsx';
 import Cart from './pages/cart/cart.jsx';
 import Admin from './pages/admin/admin.jsx';
-import ForgotPassword from './pages/forgotPassword/forgotPassword.jsx';
-import CheckEmail from './pages/checkEmail/checkEmail.jsx';
-import ResetPassword from './pages/resetPassword/resetPassword.jsx';
+import UserOrders from './pages/order/userOrders.jsx';
+import ChangePassword from './pages/changePassword/changePassword.jsx';
+import Pay from './pages/pay/pay.jsx';
+import Search from './pages/search/search';
 
 function App() {
 
@@ -24,15 +26,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/check-email" element={<CheckEmail />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-          {/* Redirect all other paths to home */}
-
-
+          <Route path="/orders" element={<UserOrders />} />
+          <Route path="/changePassword" element={<ChangePassword />} />
+          <Route path="/pay" element={<Pay />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Router>
     </div>

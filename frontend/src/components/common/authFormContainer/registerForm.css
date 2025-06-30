@@ -1,0 +1,16 @@
+.register-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.auth-form__error {
+    color: #ff424f;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}

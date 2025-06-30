@@ -1,16 +1,22 @@
 import axios from 'axios';
-import { loginStart, loginSuccess, loginFailure } from '../redux/authSlice';
+import { loginStart, loginSuccess, loginFailure, setToken } from '../redux/authSlice';
+import axiosClient from './axiosClient';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post(`http://localhost:5000/api/auth/login`, user);
+        const res = await axiosClient.post(`/auth/login`, user);
         dispatch(loginSuccess(res.data));
-        navigate('/home');
-        return { success: true };
+        console.log('Login successful:', res.data);
+        // Save token
+        dispatch(setToken(res.data.token));
+        console.log('a:', res.data.others.isAdmin);
+        if (res.data.others.isAdmin === true) {
+            navigate('/admin');
+        } else {
+            navigate('/home');
+        }
     } catch (err) {
         dispatch(loginFailure());
-        console.error('Login error:', err.response ? err.response.data : err.message);
-        return { success: false, error: err.response ? err.response.data : 'Đăng nhập không thành công' };
     }
 }

@@ -17,5 +17,8 @@ router.put('/:id', orderController.updateOrder);
 // Xóa đơn hàng
 router.delete('/:id', orderController.deleteOrder);
 
+// Lấy đơn hàng của người dùng theo userID
+router.get('/user/:userID', orderController.getUserOrders);
+
 
 module.exports = router;

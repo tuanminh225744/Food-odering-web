@@ -13,6 +13,7 @@ const authSlice = createSlice({
             error: false,
             success: false,
         },
+        token: null,
     },
     reducers: {
         // Login
@@ -45,6 +46,26 @@ const authSlice = createSlice({
             state.register.error = true;
             state.register.success = false;
         },
+
+        // Token
+        setToken: (state, action) => {
+            state.token = action.payload;
+        },
+        removeToken: (state) => {
+            state.token = null;
+        },
+
+        // Logout
+        LOGOUT: (state) => {
+            state.token = null;
+            localStorage.removeItem('token');
+        },
+        updateUserSuccess: (state, action) => {
+            state.login.currentUser.others = {
+                ...state.login.currentUser.others,
+                ...action.payload
+            };
+        },
     },
 });
 
@@ -55,6 +76,10 @@ export const {
     registerStart,
     registerSuccess,
     registerFailure,
+    setToken,
+    removeToken,
+    LOGOUT,
+    updateUserSuccess
 } = authSlice.actions;
 
 export default authSlice.reducer;

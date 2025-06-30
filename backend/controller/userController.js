@@ -2,10 +2,18 @@ const { Food, Order, User, Cart } = require('../models/model.js');
 const bcrypt = require('bcrypt');
 
 const userController = {
-    // Lấy tất cả người dùng
+    // Lấy tất cả người dùng hoặc tìm kiếm theo tên
     getAllUsers: async (req, res) => {
         try {
-            const users = await User.find();
+            const search = req.query.search;
+            let users;
+            if (search) {
+                users = await User.find({
+                    username: { $regex: search, $options: 'i' }
+                });
+            } else {
+                users = await User.find();
+            }
             res.status(200).json(users);
         } catch (error) {
             res.status(500).json({ message: error.message });
